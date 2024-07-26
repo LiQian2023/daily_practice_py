@@ -24,7 +24,7 @@
 
 
 class Solution(object):
-    def allCellsDistOrder(self, rows, cols, rCenter, cCenter):
+    def allCellsDistOrder1(self, rows, cols, rCenter, cCenter):
         """
         :type rows: int
         :type cols: int
@@ -49,6 +49,43 @@ class Solution(object):
         ans.pop(0)
         print(ans)
         return ans
+
+    def takeThird(self, ans):
+        return ans[2]
+
+    def allCellsDistOrder2(self, rows, cols, rCenter, cCenter):
+        """
+        :type rows: int
+        :type cols: int
+        :type rCenter: int
+        :type cCenter: int
+        :rtype: List[List[int]]
+        """
+        ans = [[rCenter, cCenter, 0]]
+        print(ans)
+        for i in range(rows):
+            for j in range(cols):
+                dx = abs(i - rCenter) + abs(j - cCenter)
+                ans.append([i, j, dx])
+        ans.sort(key=Solution().takeThird)
+        ans.pop(0)
+        for i in range(len(ans)):
+            ans[i].pop(2)
+        print(ans)
+        return ans
+
+    def allCellsDistOrder(self, rows, cols, rCenter, cCenter):
+        """
+        :type rows: int
+        :type cols: int
+        :type rCenter: int
+        :type cCenter: int
+        :rtype: List[List[int]]
+        """
+        ret = [(i,j) for i in range(rows) for j in range(cols)]
+        ret.sort(key=lambda x: abs(x[0] - rCenter) + abs(x[1] - cCenter))
+        return ret
+
 
 rows, cols, rCenter, cCenter = 2, 2, 1, 2
 print(Solution().allCellsDistOrder(rows, cols, rCenter, cCenter))
