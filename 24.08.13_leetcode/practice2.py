@@ -36,4 +36,3 @@ class Solution(object):
             if i == original:
                 original *= 2
         return original
-    
