@@ -36,3 +36,4 @@ class Solution(object):
                 flag = False
                 break
         return flag
+
