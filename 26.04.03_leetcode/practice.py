@@ -26,20 +26,20 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        if k in (0, n * n): return 1
+        if k in [0, n * n]:
+            return 1
 
-        def get(n, a):
-            # 计算组合公式递归版
-            def helper(n):
-                if n <= 1: return 1
-                return n * helper(n - 1)
-
-            return helper(n) / (helper(a) * helper(n - a))
+        def Permutation(n, k):
+            def Factorial(n):
+                if n in [0, 1]:
+                    return 1
+                return n * Factorial(n - 1)
+            return Factorial(n) / (Factorial(k) * Factorial(n - k))
 
         ans = 0
         for i in range(n):
             for j in range(n):
-                if n * (i + j) - (i * j) == k:
-                    ans += get(n, i) * get(n, j)
-        return int(ans)
+                if n * (i + j) - i * j == k:
+                    ans += Permutation(n, i) * Permutation(n, j)
+        return ans
 
