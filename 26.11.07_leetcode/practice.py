@@ -1,16 +1,28 @@
-# 这是一个示例 Python 脚本。
-
-# 按 Shift+F10 执行或将其替换为您的代码。
-# 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
-
-
-def print_hi(name):
-    # 在下面的代码行中使用断点来调试脚本。
-    print(f'Hi, {name}')  # 按 Ctrl+F8 切换断点。
-
-
-# 按装订区域中的绿色按钮以运行脚本。
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
+# 2026.11.07力扣网刷题
+# LCR 079. 子集——位运算、数组、回溯——中等
+# 给定一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。
+# 解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。
+# 示例 1：
+# 输入：nums = [1, 2, 3]
+# 输出： [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+# 示例 2：
+# 输入：nums = [0]
+# 输出： [[], [0]]
+# 提示：
+# 1 <= nums.length <= 10
+# - 10 <= nums[i] <= 10
+# nums 中的所有元素 互不相同
+# 注意：本题与主站 78 题相同： https ://leetcode.cn/problems/subsets/
+from typing import List
+class Solution:
+    def BackTrack(self, nums, stack, ans, begin):
+        ans.append(stack)
+        if len(stack) == len(nums):
+            return
+        for i in range(begin, len(nums)):
+            self.BackTrack(nums, stack+[nums[i]], ans, i + 1)
+            
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        self.BackTrack(nums, [], ans, 0)
+        return ans
